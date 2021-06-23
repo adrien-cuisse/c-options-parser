@@ -49,7 +49,8 @@ run-tests: test-binaries
 
 .PHONY: diagnotic
 diagnostic: test-binaries
-	$(foreach TEST_BIN,$(TESTS_BINS),valgrind --quiet ./$(TEST_BIN) --quiet;)
+#	$(foreach TEST_BIN,$(TESTS_BINS),valgrind ./$(TEST_BIN) --quiet;)
+	$(foreach TEST_BIN,$(TESTS_BINS),valgrind ./$(TEST_BIN) --quiet;)
 	
 .PHONY: clean
 clean:
