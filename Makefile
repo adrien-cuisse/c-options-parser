@@ -1,7 +1,7 @@
 
 CC=gcc
-CFLAGS=-ansi -pedantic -Wextra #-Werror -Wall
-CFLAGS_TEST=-pedantic -Wextra -Wall #-Werror
+CFLAGS=-ansi -pedantic -Wextra -Werror -Wall
+CFLAGS_TEST=-pedantic -Wextra -Wall -Werror
 LDFLAGS=
 LDFLAGS_TEST=-lcriterion
 
