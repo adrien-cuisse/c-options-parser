@@ -64,7 +64,6 @@ static int __parseShortOption(
 static int __parseLongOption(
     ProgramOption * const option,
     char * programArguments[],
-    unsigned int argumentsCount,
     unsigned int argumentPosition
 );
 
@@ -169,7 +168,7 @@ static void parse(
 
         for (argumentIndex = 0; argumentIndex < argumentsCount; argumentIndex++) {
             
-            if (__parseLongOption(currentOption, programArguments, argumentsCount, argumentIndex)) {
+            if (__parseLongOption(currentOption, programArguments, argumentIndex)) {
                 /* nothing to do */
             } else if (__parseShortOption(currentOption, programArguments, argumentsCount, argumentIndex) == 2) {
                 argumentIndex++; /* skip next argument, value extracted from it */
@@ -189,7 +188,7 @@ static int __parseShortOption(
     unsigned int argumentsCount,
     unsigned int argumentPosition
 ) {
-    char * optionShortName;
+    char const * optionShortName;
     char * argument = programArguments[argumentPosition];
     int optionExpectsValue;
 
@@ -210,6 +209,7 @@ static int __parseShortOption(
             return 2;
         }
 
+        fprintf(stderr, "Unrecognized format, expected to find value after -%s\n", optionShortName);
         return 0;
     }
 
@@ -222,10 +222,9 @@ static int __parseShortOption(
 static int __parseLongOption(
     ProgramOption * const option,
     char * programArguments[],
-    unsigned int argumentsCount,
     unsigned int argumentPosition
 ) {
-    char * optionLongName;
+    char const * optionLongName;
     char * argument = programArguments[argumentPosition];
     int optionExpectsValue;
     unsigned int optionLongNameLength;
@@ -248,7 +247,7 @@ static int __parseLongOption(
             return 2;
         }
 
-        printf(stderr, "Unrecognized format, expected to find '=' after --%s=\n", optionLongName);
+        fprintf(stderr, "Unrecognized format, expected to find '=' after --%s=\n", optionLongName);
         return 0;
     }
 
