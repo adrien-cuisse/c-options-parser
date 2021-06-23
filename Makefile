@@ -39,7 +39,6 @@ $(TESTS_OBJ_DIR)/%.o: $(TESTS_SRC_DIR)/%.c
 
 # compile test binaries
 $(TESTS_BIN_DIR)/%: $(TESTS_OBJ_DIR)/%.o
-	echo $(OBJ)
 	$(CC) $^ $(OBJ) -o $@ $(LDFLAGS_TEST) 
 
 .PHONY: run-tests
