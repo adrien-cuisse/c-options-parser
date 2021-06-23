@@ -125,5 +125,3 @@ Test(ProgramOptionParser, parses_long_option_which_expects_value) {
         "Expected the parser to store the value 3, got %d", _ProgramOptionValue->asInteger(value)
     );
 }
-
-// checkpoint TODO: const everywhere (except list->data()), don't return const when getter needed to update
